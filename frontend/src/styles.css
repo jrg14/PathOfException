@@ -1,0 +1,201 @@
+:root {
+  --bg: #f5f6ef;
+  --surface: #fffef8;
+  --surface-border: #dbd7c8;
+  --text: #21211e;
+  --muted: #626059;
+  --accent: #c8511f;
+  --accent-dark: #963813;
+  --success: #1f6a42;
+  --error: #9f2f2f;
+  --shadow: 0 24px 60px rgba(37, 33, 27, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 10% 10%, #f0e9d5 0, transparent 35%),
+    radial-gradient(circle at 90% 90%, #e2c8ad 0, transparent 40%), var(--bg);
+}
+
+.auth-shell {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+.auth-card {
+  position: relative;
+  width: min(520px, 100%);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  animation: rise 440ms ease-out both;
+}
+
+.auth-header h1 {
+  margin: 0.2rem 0 0.5rem;
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+}
+
+.kicker {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: #f0ede2;
+  border-radius: 14px;
+  padding: 0.3rem;
+  margin: 1.25rem 0;
+}
+
+.tab {
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  padding: 0.55rem 0.3rem;
+  color: var(--muted);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 180ms ease;
+}
+
+.tab.active {
+  background: #ffffff;
+  color: var(--text);
+  box-shadow: 0 6px 16px rgba(21, 20, 19, 0.1);
+}
+
+.form {
+  display: grid;
+  gap: 0.7rem;
+}
+
+label {
+  margin-top: 0.2rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #d3ccbc;
+  border-radius: 12px;
+  padding: 0.78rem 0.85rem;
+  background: #fff;
+  font-size: 0.95rem;
+  transition: border-color 170ms ease, box-shadow 170ms ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(200, 81, 31, 0.2);
+}
+
+.primary {
+  margin-top: 0.8rem;
+  border: 0;
+  border-radius: 12px;
+  padding: 0.82rem 0.95rem;
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(120deg, var(--accent), #d66d20);
+  cursor: pointer;
+  transition: transform 140ms ease, filter 140ms ease;
+}
+
+.primary:hover {
+  filter: brightness(0.98);
+  transform: translateY(-1px);
+}
+
+.primary:disabled {
+  cursor: wait;
+  opacity: 0.85;
+}
+
+.session-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background: #f7f2e8;
+  border: 1px solid #e1d8c8;
+}
+
+.session-box h2 {
+  margin-top: 0;
+  margin-bottom: 0.7rem;
+  font-size: 1.05rem;
+}
+
+.message {
+  margin-top: 1rem;
+  padding: 0.72rem 0.84rem;
+  border-radius: 12px;
+  font-size: 0.92rem;
+}
+
+.message.success {
+  color: var(--success);
+  background: #e7f4ec;
+  border: 1px solid #bedcc9;
+}
+
+.message.error {
+  color: var(--error);
+  background: #faeaea;
+  border: 1px solid #efc6c6;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 560px) {
+  .auth-card {
+    padding: 1.4rem;
+    border-radius: 18px;
+  }
+
+  .tabs {
+    gap: 0.1rem;
+  }
+}
