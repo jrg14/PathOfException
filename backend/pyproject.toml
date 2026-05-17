@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=69.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pathofexception-backend"
+version = "0.1.0"
+description = "FastAPI backend with fastapi-users and SQLAlchemy"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.116.0",
+  "uvicorn[standard]>=0.35.0",
+  "sqlalchemy>=2.0.41",
+  "asyncpg>=0.30.0",
+  "alembic>=1.16.0",
+  "pydantic-settings>=2.10.0",
+  "python-multipart>=0.0.20",
+  "email-validator>=2.2.0",
+  "fastapi-users[sqlalchemy]>=14.0.1",
+  "passlib[bcrypt]>=1.7.4",
+  "pyjwt[crypto]>=2.10.1"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.4.0",
+  "httpx>=0.28.1",
+  "ruff==0.14.14",
+  "pre-commit==4.5.1",
+  "mypy>=1.16.0"
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+# Habilitamos:
+# E: pycodestyle (errores)
+# F: Pyflakes
+# I: Isort (esto es lo que ordena los imports alfabéticamente)
+select = ["E", "F", "I"]
+fixable = ["ALL"]
+
+[tool.ruff.lint.isort]
+# Configuración para que los imports se agrupen
+combine-as-imports = true
+force-single-line = false
+
+[tool.ruff.format]
+# Configuración del formateador
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
