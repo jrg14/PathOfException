@@ -1,0 +1,65 @@
+{
+  "name": "Python Docker Compose Dev Environment",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "backend",
+  "workspaceFolder": "/app",
+
+  // Características adicionales
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+
+  // Extensiones que se instalarán automáticamente DENTRO de Docker
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff"
+      ],
+      // Configuraciones adaptadas para Docker
+      "settings": {
+        // Editor General
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.formatOnPaste": true,
+        "editor.rulers": [88],
+        "files.trimTrailingWhitespace": true,
+
+        // Python e Intérprete dentro de Docker
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.terminal.activateEnvironment": false,
+
+        // Configuración específica de Python / Ruff
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff",
+          "editor.codeActionsOnSave": {
+            "source.fixAll.ruff": "always",
+            "source.organizeImports.ruff": "always"
+          }
+        },
+
+        // Pylance
+        "python.languageServer": "Pylance",
+        "python.analysis.indexing": true,
+        "python.analysis.autoImportCompletions": true,
+        "python.analysis.typeCheckingMode": "strict",
+        "python.analysis.diagnosticSeverityOverrides": {
+          "reportUndefinedVariable": "none",
+          "reportUnusedExpression": "none"
+        },
+        "python.analysis.inlayHints.variableTypes": false,
+        "python.analysis.inlayHints.functionReturnTypes": true,
+        "python.analysis.inlayHints.callArgumentNames": "off",
+        "python.analysis.inlayHints.pytestParameters": true,
+
+        // Testing
+        "python.testing.unittestEnabled": false,
+        "python.testing.pytestEnabled": true
+      }
+    }
+  },
+
+  // Mantiene al usuario de docker sin problemas de permisos de root
+  "remoteUser": "root"
+}
